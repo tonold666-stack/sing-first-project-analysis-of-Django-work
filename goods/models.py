@@ -1,4 +1,5 @@
 from email.mime import image
+import re
 from tabnanny import verbose
 from django.db import models
 
@@ -32,3 +33,12 @@ class Products(models.Model):
 
     def __str__(self):
         return f'{self.name} Количесвто - {self.quantity}'
+    
+    def display_id(self):
+        return f"{self.id:05}"
+    
+    def sell_price(self):
+        if self.discount:
+            return round(self.price - self.price*self.discount/100, 2)
+        
+        return self.price
