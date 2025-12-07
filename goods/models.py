@@ -2,6 +2,7 @@ from email.mime import image
 import re
 from tabnanny import verbose
 from django.db import models
+from django.urls import reverse
 
 
 class Categories(models.Model):
@@ -35,8 +36,14 @@ class Products(models.Model):
     def __str__(self):
         return f'{self.name} Количесвто - {self.quantity}'
     
+    def get_absolute_url(self):
+        return reverse("catalog:product", kwargs={"product_slug": self.slug})
+    
+    
     def display_id(self):
         return f"{self.id:05}"
+    
+
     
     def sell_price(self):
         if self.discount:
