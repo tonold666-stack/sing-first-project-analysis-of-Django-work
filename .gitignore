@@ -2,6 +2,11 @@
 venv/
 .pylintrc
 __pycache__/
+*.sqlite3
+.env
+media/
+.vscode/
+.idea/
 
 #ide stuff
 .vscode
